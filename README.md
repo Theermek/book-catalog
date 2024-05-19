@@ -1,6 +1,6 @@
 # Book Catalog App
 
-![Book Catalog App](https://Theermek.github.io/book-catalog/)
+![Book Catalog App](https://theermek.github.io/book-catalog/)
 
 A web application to manage a catalog of books, allowing users to add, edit, delete, and sort books by various criteria. The application is built using React and Firebase, and is deployed on GitHub Pages.
 
