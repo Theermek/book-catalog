@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     fetchBooks();
-  }, []);
+  });
 
   const handleAddBook = (book) => {
     setBooks([...books, book]);
