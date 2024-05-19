@@ -21,9 +21,9 @@ const Recommendations = ({ books }) => {
   if (!recommendedBook) return <div>Нет рекомендаций</div>;
 
   return (
-    <div>
-      <h2>Рекомендуемая книга</h2>
-      <p>{recommendedBook.title}</p>
+    <div className="mb-4">
+      <h2 className="text-2xl font-bold mb-2">Рекомендуемая книга</h2>
+      <p className="text-lg">{recommendedBook.title}</p>
     </div>
   );
 };

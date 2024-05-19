@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { db } from './utils/firebase';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
-import Recommendations from './components/Recommedations';
+import { db } from './utils/firebase';
+import Recommendations from './components/Recommendations';
 import BookList from './components/BookList';
 import BookForm from './components/BookForm';
 import SortSelector from './components/SortSelector';
@@ -23,10 +23,14 @@ function App() {
 
   useEffect(() => {
     fetchBooks();
-  });
+  }, []);
 
   const handleAddBook = (book) => {
     setBooks([...books, book]);
+  };
+
+  const handleUpdateBook = (updatedBook) => {
+    setBooks(books.map(book => (book.id === updatedBook.id ? updatedBook : book)));
   };
 
   const deleteBook = async (id) => {
@@ -35,12 +39,12 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Каталог книг</h1>
-      <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
+    <div className=" p-4 bg-stone-500">
       <BookForm onAddBook={handleAddBook} />
       <Recommendations books={books} />
-      <BookList books={books} deleteBook={deleteBook} sortMode={sortMode} />
+      <h1 className="text-2xl font-bold mb-4 text-red-700">Каталог книг</h1>
+      <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
+      <BookList books={books} deleteBook={deleteBook} sortMode={sortMode} onUpdateBook={handleUpdateBook} />
     </div>
   );
 }
