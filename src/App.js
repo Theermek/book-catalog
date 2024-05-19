@@ -5,6 +5,7 @@ import Recommendations from './components/Recommendations';
 import BookList from './components/BookList';
 import BookForm from './components/BookForm';
 import SortSelector from './components/SortSelector';
+import './app.css'
 
 function App() {
   // Состояние для хранения списка книг
@@ -56,15 +57,13 @@ function App() {
 
   // Рендерим компоненты и передаем нужные пропсы
   return (
-    <div className="p-4 bg-stone-500">
-      {/* Форма добавления книги */}
+    <div className="p-4 bg-neutral-100">
       <BookForm onAddBook={handleAddBook} />
-      {/* Компонент рекомендаций */}
-      <Recommendations books={books} />
-      <h1 className="text-2xl font-bold mb-4 text-red-700">Каталог книг</h1>
-      {/* Компонент выбора сортировки */}
-      <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
-      {/* Список книг */}
+      <div className='flex justify-between mt-8 h-20 mb-2'>
+        <Recommendations books={books} />
+        <h1 className="text-4xl font-bold text-red-700 self-start">Каталог книг</h1>
+        <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
+      </div>
       <BookList books={books} deleteBook={deleteBook} sortMode={sortMode} onUpdateBook={handleUpdateBook} />
     </div>
   );

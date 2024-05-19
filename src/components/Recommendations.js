@@ -4,12 +4,11 @@ import { getRecommendedBook } from '../utils/getRecommendedBook';
 const Recommendations = ({ books }) => {
   const recommendedBook = getRecommendedBook(books);
 
-  if (!recommendedBook) return <div>Нет рекомендаций</div>;
+  if (!recommendedBook) return <div className=" self-end">Нет рекомендаций</div>;
 
   return (
-    <div className="mb-4">
-      <h2 className="text-xl font-bold">Рекомендуемая книга</h2>
-      <p>{recommendedBook.title}</p>
+    <div className=" self-end">
+      <h2 className="text-xl font-semibold">Книга дня: <span>{recommendedBook.title}</span></h2>
     </div>
   );
 };

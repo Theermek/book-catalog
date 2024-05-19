@@ -7,7 +7,7 @@ const BookList = ({ books, deleteBook, sortMode, onUpdateBook }) => {
   const [editingBook, setEditingBook] = useState(null);
 
   return (
-    <div className='bg-red-500'>
+    <div className=''>
       {sortedKeys.map(key => (
         <BookGroup
           key={key}

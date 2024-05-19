@@ -2,9 +2,9 @@ import React from 'react';
 
 const SortSelector = ({ sortMode, setSortMode }) => {
   return (
-    <div className="mb-4">
+    <div className=" self-end">
       <label htmlFor="sort-mode" className="mr-2">Сортировать по: </label>
-      <select id="sort-mode" value={sortMode} onChange={(e) => setSortMode(e.target.value)} className="border p-2">
+      <select id="sort-mode" value={sortMode} onChange={(e) => setSortMode(e.target.value)} className="border-2 mb-2 border-neutral-500 rounded bg-neutral-100">
         <option value="year">Году</option>
         <option value="rating">Рейтингу</option>
         <option value="author">Автору</option>

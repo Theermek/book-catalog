@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { db } from '../utils/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck, faRotateLeft } from "@fortawesome/free-solid-svg-icons"
 
 const EditBookForm = ({ book, onUpdateBook, onCancel }) => {
   // Хуки для состояния формы редактирования
@@ -28,14 +30,18 @@ const EditBookForm = ({ book, onUpdateBook, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
-      <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Название" required maxLength="100" className="border p-2 mb-2" />
-      <input type="text" value={authors} onChange={e => setAuthors(e.target.value)} placeholder="Авторы" required className="border p-2 mb-2" />
-      <input type="number" value={year} onChange={e => setYear(e.target.value)} placeholder="Год публикации" min="1800" className="border p-2 mb-2" />
-      <input type="number" value={rating} onChange={e => setRating(e.target.value)} placeholder="Рейтинг" min="0" max="10" className="border p-2 mb-2" />
-      <input type="text" value={isbn} onChange={e => setIsbn(e.target.value)} placeholder="ISBN" className="border p-2 mb-2" />
-      <button type="submit" className="bg-blue-500 text-white p-2">Сохранить</button>
-      <button type="button" onClick={onCancel} className="bg-gray-500 text-white p-2 ml-2">Отмена</button>
+    <form onSubmit={handleSubmit} className=" flex flex-col gap-1">
+      <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Название" required maxLength="100" className="border border-neutral-700 rounded p-1 bg-neutral-100" />
+      <input type="text" value={authors} onChange={e => setAuthors(e.target.value)} placeholder="Авторы" required className="border border-neutral-700 rounded p-1 bg-neutral-100" />
+      <input type="number" value={year} onChange={e => setYear(e.target.value)} placeholder="Год публикации" min="1800" className="border border-neutral-700 rounded p-1 bg-neutral-100" />
+      <input type="number" value={rating} onChange={e => setRating(e.target.value)} placeholder="Рейтинг" min="0" max="10" className="border border-neutral-700 rounded p-1 bg-neutral-100" />
+      <input type="text" value={isbn} onChange={e => setIsbn(e.target.value)} placeholder="ISBN" className="border border-neutral-700 rounded p-1 bg-neutral-100" />
+      <button type="submit" className=' bg-emerald-700 rounded cursor-pointer text-white p-1 text-xl hover:bg-emerald-600'>
+        <FontAwesomeIcon icon={faCheck} />
+      </button>
+      <button type="button" onClick={onCancel} className="bg-neutral-500 rounded cursor-pointer text-white p-1 text-xl hover:bg-neutral-400">
+        <FontAwesomeIcon icon={faRotateLeft} />
+      </button>
     </form>
   );
 };

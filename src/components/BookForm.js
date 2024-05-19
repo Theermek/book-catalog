@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
+import Modal from 'react-modal';
 import { db } from '../utils/firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
 
+Modal.setAppElement('#root'); //Модалка для добавления
+
 const BookForm = ({ onAddBook }) => {
-  // Хранения состояния
+  // Хранения состояния формы и модального окна
   const [title, setTitle] = useState('');
   const [authors, setAuthors] = useState('');
   const [year, setYear] = useState('');
   const [rating, setRating] = useState(0);
   const [isbn, setIsbn] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   // Ссылка на коллекцию книг в Firestore
   const booksCollectionRef = collection(db, 'books');
@@ -58,56 +62,77 @@ const BookForm = ({ onAddBook }) => {
     await addDoc(booksCollectionRef, newBook);
     onAddBook({ id: booksCollectionRef.id, ...newBook });
 
-    // Очищаем поля формы
+    // Очищаем поля формы и закрываем модальное окно
     setTitle('');
     setAuthors('');
     setYear('');
     setRating(0);
     setIsbn('');
     setErrorMessage(''); // Очищаем сообщение об ошибке
+    setModalIsOpen(false); // Закрываем модальное окно
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        placeholder="Название"
-        required
-        maxLength="100"
-      />
-      <input
-        type="text"
-        value={authors}
-        onChange={e => setAuthors(e.target.value)}
-        placeholder="Авторы"
-        required
-      />
-      <input
-        type="number"
-        value={year}
-        onChange={e => setYear(e.target.value)}
-        placeholder="Год публикации"
-        min="1800"
-      />
-      <input
-        type="number"
-        value={rating}
-        onChange={e => setRating(e.target.value)}
-        placeholder="Рейтинг"
-        min="0"
-        max="10"
-      />
-      <input
-        type="text"
-        value={isbn}
-        onChange={e => setIsbn(e.target.value)}
-        placeholder="ISBN"
-      />
-      <button type="submit">Добавить книгу</button>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-    </form>
+    <div>
+      <button onClick={() => setModalIsOpen(true)} className="bg-emerald-700 hover:bg-emerald-600 text-white h-24 w-24 outline-4 outline-dotted outline-offset-4 outline-red-700 fixed bottom-20 right-20 rounded-full">
+        Добавить книгу
+      </button>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Добавить новую книгу"
+        className="modal"
+        overlayClassName="overlay"
+      >
+        <h2 className=' text-center text-2xl font-bold my-8 text-neutral-700'>Добавить новую книгу</h2>
+        <form onSubmit={handleSubmit} className='flex flex-col justify-between h-96 my-4 gap-2'>
+          <input
+            type="text"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="Название"
+            required
+            maxLength="100"
+            className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
+          />
+          <input
+            type="text"
+            value={authors}
+            onChange={e => setAuthors(e.target.value)}
+            placeholder="Авторы"
+            required
+            className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
+          />
+          <input
+            type="number"
+            value={year}
+            onChange={e => setYear(e.target.value)}
+            placeholder="Год публикации"
+            min="1800"
+            className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
+          />
+          <input
+            type="number"
+            value={rating}
+            onChange={e => setRating(e.target.value)}
+            placeholder="Рейтинг"
+            min="0"
+            max="10"
+            className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
+          />
+          <input
+            type="text"
+            value={isbn}
+            onChange={e => setIsbn(e.target.value)}
+            placeholder="ISBN"
+            className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
+          />
+          <button type="submit" className="btn bg-emerald-700 hover:bg-emerald-600 text-white py-3 rounded">Добавить</button>
+          <button onClick={() => setModalIsOpen(false)} className="btn bg-neutral-500 hover:bg-neutral-400 text-white py-3 rounded">Отмена</button>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        </form>
+      </Modal>
+    </div>
   );
 };
 
