@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCPzR_H04cPFuJDWnZQksPHmWQm-eVvL34",
-    authDomain: "book-catalog-25fc9.firebaseapp.com",
-    projectId: "book-catalog-25fc9",
-    storageBucket: "book-catalog-25fc9.appspot.com",
-    messagingSenderId: "262735096013",
-    appId: "1:262735096013:web:bb371cbb7b0fb1f2f12184",
-    measurementId: "G-EGNLXJPQFP"
+    apiKey: "AIzaSyCm3igSS7VNVVYzd0w2gCKdhjPXQLCaz6w",
+    authDomain: "books-15695.firebaseapp.com",
+    projectId: "books-15695",
+    storageBucket: "books-15695.appspot.com",
+    messagingSenderId: "863505565605",
+    appId: "1:863505565605:web:4c3e7765303c31629e8a4c",
+    measurementId: "G-7HC1RXMZ3B"
   };
 
 export const app = initializeApp(firebaseConfig);
