@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import EditBookForm from './EditBookForm';
 
 const groupBooks = (books, sortMode) => {
   const groupedBooks = {};
@@ -39,11 +40,12 @@ const groupBooks = (books, sortMode) => {
 
   if (sortMode === 'author') {
     books.forEach(book => {
-      const author = book.authors[0] || 'Без автора';
-      if (!groupedBooks[author]) {
-        groupedBooks[author] = [];
-      }
-      groupedBooks[author].push(book);
+      book.authors.forEach(author => {
+        if (!groupedBooks[author]) {
+          groupedBooks[author] = [];
+        }
+        groupedBooks[author].push(book);
+      });
     });
 
     const sortedAuthors = Object.keys(groupedBooks).sort((a, b) => a.localeCompare(b));
@@ -57,23 +59,35 @@ const groupBooks = (books, sortMode) => {
   return { groupedBooks: {}, sortedKeys: [] };
 };
 
-const BookList = ({ books, deleteBook, sortMode }) => {
+const BookList = ({ books, deleteBook, sortMode, onUpdateBook }) => {
   const { groupedBooks, sortedKeys } = groupBooks(books, sortMode);
+  const [editingBook, setEditingBook] = useState(null);
 
   return (
-    <div>
+    <div className=' bg-red-500'>
       {sortedKeys.map(key => (
-        <div key={key}>
-          <h2>{key}</h2>
-          <ul>
+        <div key={key} className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">{key}</h2>
+          <ul className="list-disc list-inside">
             {groupedBooks[key].map(book => (
-              <li key={book.id}>
-                <h4>{book.title}</h4>
-                <p>Автор: {book.authors.join(', ')}</p>
-                {book.year ? <p>Год: {book.year}</p> : null}
-                <p>Рейтинг: {book.rating}</p>
-                {book.isbn ? <p>ISBN: {book.isbn}</p> : null}
-                <button onClick={() => deleteBook(book.id)}>x</button>
+              <li key={book.id} className="mb-2">
+                {editingBook && editingBook.id === book.id ? (
+                  <EditBookForm book={editingBook} onUpdateBook={onUpdateBook} onCancel={() => setEditingBook(null)} />
+                ) : (
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <h4 className="text-lg font-bold">{book.title}</h4>
+                      <p>Автор: {book.authors.join(', ')}</p>
+                      {book.year ? <p>Год: {book.year}</p> : null}
+                      <p>Рейтинг: {book.rating}</p>
+                      {book.isbn ? <p>ISBN: {book.isbn}</p> : null}
+                    </div>
+                    <div>
+                      <button onClick={() => deleteBook(book.id)} className="bg-red-500 text-white p-1 ml-4">x</button>
+                      <button onClick={() => setEditingBook(book)} className="bg-blue-500 text-white p-1 ml-4">Редактировать</button>
+                    </div>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
