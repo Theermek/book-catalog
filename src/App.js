@@ -7,46 +7,68 @@ import BookForm from './components/BookForm';
 import SortSelector from './components/SortSelector';
 
 function App() {
+  // Состояние для хранения списка книг
   const [books, setBooks] = useState([]);
+  // Состояние для хранения режима сортировки
   const [sortMode, setSortMode] = useState('year');
+  // Ссылка на коллекцию книг в Firestore
   const booksCollectionRef = collection(db, 'books');
 
+  // Функция для получения данных из Firestore
   const fetchBooks = async () => {
     try {
+      // Получаем все документы из коллекции книг
       const data = await getDocs(booksCollectionRef);
+      // Преобразуем документы в массив объектов
       const filteredData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      // Обновляем состояние списка книг
       setBooks(filteredData);
     } catch (err) {
+      // Выводим ошибку в консоль, если что-то пошло не так
       console.error(err);
     }
   };
 
+  // useEffect для получения данных при первом рендере
   useEffect(() => {
     fetchBooks();
-  }, []);
+  }, []); // Пустой массив зависимостей означает, что этот эффект выполнится только один раз
 
+  // Обработчик добавления новой книги
   const handleAddBook = (book) => {
+    // Добавляем новую книгу в список книг
     setBooks([...books, book]);
   };
 
+  // Обработчик обновления информации о книге
   const handleUpdateBook = (updatedBook) => {
+    // Обновляем информацию о книге в списке
     setBooks(books.map(book => (book.id === updatedBook.id ? updatedBook : book)));
   };
 
+  // Функция удаления книги из Firestore
   const deleteBook = async (id) => {
+    // Удаляем документ книги из Firestore
     await deleteDoc(doc(db, 'books', id));
+    // Удаляем книгу из состояния списка книг
     setBooks(books.filter(book => book.id !== id));
   };
 
+  // Рендерим компоненты и передаем нужные пропсы
   return (
-    <div className=" p-4 bg-stone-500">
+    <div className="p-4 bg-stone-500">
+      {/* Форма добавления книги */}
       <BookForm onAddBook={handleAddBook} />
+      {/* Компонент рекомендаций */}
       <Recommendations books={books} />
       <h1 className="text-2xl font-bold mb-4 text-red-700">Каталог книг</h1>
+      {/* Компонент выбора сортировки */}
       <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
+      {/* Список книг */}
       <BookList books={books} deleteBook={deleteBook} sortMode={sortMode} onUpdateBook={handleUpdateBook} />
     </div>
   );
 }
+
 
 export default App;
