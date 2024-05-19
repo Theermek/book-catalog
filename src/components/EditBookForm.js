@@ -1,14 +1,16 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import { db } from '../utils/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
 const EditBookForm = ({ book, onUpdateBook, onCancel }) => {
+  // Хуки для состояния формы редактирования
   const [title, setTitle] = useState(book.title);
   const [authors, setAuthors] = useState(book.authors.join(', '));
   const [year, setYear] = useState(book.year);
   const [rating, setRating] = useState(book.rating);
   const [isbn, setIsbn] = useState(book.isbn);
 
+  // Обработчик отправки формы редактирования
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedBook = {
