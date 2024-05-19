@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/book-catalog/static/css/main.d9b9ccbc.css",
+    "main.js": "/book-catalog/static/js/main.226e357e.js",
+    "static/media/AkzidenzGroteskPro-Md.otf": "/book-catalog/static/media/AkzidenzGroteskPro-Md.cc26999e30e2dc975f08.otf",
+    "static/media/AkzidenzGroteskPro-Regular.otf": "/book-catalog/static/media/AkzidenzGroteskPro-Regular.b0f366292c60998c5d9a.otf",
+    "static/media/AkzidenzGroteskPro-BoldEx.otf": "/book-catalog/static/media/AkzidenzGroteskPro-BoldEx.5b7699356120e90f7556.otf",
+    "index.html": "/book-catalog/index.html",
+    "main.d9b9ccbc.css.map": "/book-catalog/static/css/main.d9b9ccbc.css.map",
+    "main.226e357e.js.map": "/book-catalog/static/js/main.226e357e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9b9ccbc.css",
+    "static/js/main.226e357e.js"
+  ]
+}
