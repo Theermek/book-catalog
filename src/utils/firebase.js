@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { initializeFirestore, persistentLocalCache} from 'firebase/firestore'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCPzR_H04cPFuJDWnZQksPHmWQm-eVvL34",
-    authDomain: "book-catalog-25fc9.firebaseapp.com",
-    projectId: "book-catalog-25fc9",
-    storageBucket: "book-catalog-25fc9.appspot.com",
-    messagingSenderId: "262735096013",
-    appId: "1:262735096013:web:bb371cbb7b0fb1f2f12184",
-    measurementId: "G-EGNLXJPQFP"
-  };  
+  apiKey: "AIzaSyBqSrOiGyzyS4UUfSoYzp43dQbPm9e6W1Q",
+  authDomain: "newbook-29167.firebaseapp.com",
+  projectId: "newbook-29167",
+  storageBucket: "newbook-29167.appspot.com",
+  messagingSenderId: "890590168825",
+  appId: "1:890590168825:web:d0ba933c82f339418f0428",
+  measurementId: "G-HE2257YXG8"
+};
 
 // export const app = initializeApp(firebaseConfig);
 // export const db = getFirestore(app)
