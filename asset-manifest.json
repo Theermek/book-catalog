@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/book-catalog/static/css/main.38a4a94d.css",
-    "main.js": "/book-catalog/static/js/main.2bf2d943.js",
+    "main.css": "/book-catalog/static/css/main.2df1c208.css",
+    "main.js": "/book-catalog/static/js/main.c6d97160.js",
     "static/media/AkzidenzGroteskPro-Md.otf": "/book-catalog/static/media/AkzidenzGroteskPro-Md.cc26999e30e2dc975f08.otf",
     "static/media/AkzidenzGroteskPro-Regular.otf": "/book-catalog/static/media/AkzidenzGroteskPro-Regular.b0f366292c60998c5d9a.otf",
     "static/media/AkzidenzGroteskPro-BoldEx.otf": "/book-catalog/static/media/AkzidenzGroteskPro-BoldEx.5b7699356120e90f7556.otf",
     "index.html": "/book-catalog/index.html",
-    "main.38a4a94d.css.map": "/book-catalog/static/css/main.38a4a94d.css.map",
-    "main.2bf2d943.js.map": "/book-catalog/static/js/main.2bf2d943.js.map"
+    "main.2df1c208.css.map": "/book-catalog/static/css/main.2df1c208.css.map",
+    "main.c6d97160.js.map": "/book-catalog/static/js/main.c6d97160.js.map"
   },
   "entrypoints": [
-    "static/css/main.38a4a94d.css",
-    "static/js/main.2bf2d943.js"
+    "static/css/main.2df1c208.css",
+    "static/js/main.c6d97160.js"
   ]
 }
