@@ -74,7 +74,7 @@ const BookForm = ({ onAddBook }) => {
 
   return (
     <div>
-      <button onClick={() => setModalIsOpen(true)} className="bg-emerald-700 hover:bg-emerald-600 text-white h-24 w-24 outline-4 outline-dotted outline-offset-4 outline-red-700 fixed bottom-20 right-20 rounded-full">
+      <button onClick={() => setModalIsOpen(true)} className="bg-yellow-500 hover:bg-yellow-400 text-white h-24 w-24 outline-4 outline-dotted outline-offset-4 outline-indigo-600 fixed text-lg font-medium bottom-20 right-20 rounded-full">
         Добавить книгу
       </button>
       <Modal
@@ -127,7 +127,7 @@ const BookForm = ({ onAddBook }) => {
             placeholder="ISBN"
             className=' py-2 px-4 rounded bg-neutral-200 border-2 border-neutral-300'
           />
-          <button type="submit" className="btn bg-emerald-700 hover:bg-emerald-600 text-white py-3 rounded">Добавить</button>
+          <button type="submit" className="btn bg-yellow-500 hover:bg-yellow-400 text-white py-3 rounded">Добавить</button>
           <button onClick={() => setModalIsOpen(false)} className="btn bg-neutral-500 hover:bg-neutral-400 text-white py-3 rounded">Отмена</button>
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </form>

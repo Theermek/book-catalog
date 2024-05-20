@@ -30,7 +30,7 @@ const EditBookForm = ({ book, onUpdateBook, onCancel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" flex flex-col gap-1">
+    <form onSubmit={handleSubmit} className=" flex flex-col gap-1 text-zinc-700 hover:text-zinc-700">
       <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Название" required maxLength="100" className="border border-neutral-700 rounded p-1 bg-neutral-100" />
       <input type="text" value={authors} onChange={e => setAuthors(e.target.value)} placeholder="Авторы" required className="border border-neutral-700 rounded p-1 bg-neutral-100" />
       <input type="number" value={year} onChange={e => setYear(e.target.value)} placeholder="Год публикации" min="1800" className="border border-neutral-700 rounded p-1 bg-neutral-100" />

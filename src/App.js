@@ -57,11 +57,11 @@ function App() {
 
   // Рендерим компоненты и передаем нужные пропсы
   return (
-    <div className="p-4 bg-neutral-100">
+    <div className="p-4 bg-zinc-100 text-zinc-700">
       <BookForm onAddBook={handleAddBook} />
-      <div className='flex justify-between mt-8 h-20 mb-2'>
+      <div className='flex justify-between mt-8 h-32 mb-4'>
         <Recommendations books={books} />
-        <h1 className="text-4xl font-bold text-red-700 self-start">Каталог книг</h1>
+        <h1 className=" text-6xl basis-1/2 font-bold text-indigo-600 text-center">Каталог книг</h1>
         <SortSelector sortMode={sortMode} setSortMode={setSortMode} />
       </div>
       <BookList books={books} deleteBook={deleteBook} sortMode={sortMode} onUpdateBook={handleUpdateBook} />
