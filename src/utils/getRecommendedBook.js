@@ -12,14 +12,13 @@ export const getRecommendedBook = (books) => {
   // Если нет подходящих книг, возвращаем null
   if (eligibleBooks.length === 0) return null;
 
-  // Находим книгу с максимальным рейтингом
-  let recommendedBook = eligibleBooks[0];
-  for (const book of eligibleBooks) {
-    if (book.rating > recommendedBook.rating) {
-      recommendedBook = book;
-    }
-  }
+  // Находим максимальный рейтинг среди подходящих книг
+  const maxRating = Math.max(...eligibleBooks.map(book => book.rating));
 
-  // Возвращаем одну книгу с максимальным рейтингом
-  return recommendedBook;
+  // Фильтруем книги с максимальным рейтингом
+  const bestBooks = eligibleBooks.filter(book => book.rating === maxRating);
+
+  // Возвращаем одну случайную книгу из книг с максимальным рейтингом
+  const randomIndex = Math.floor(Math.random() * bestBooks.length);
+  return bestBooks[randomIndex];
 };
